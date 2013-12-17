@@ -16,11 +16,12 @@ namespace EigenWrapper {
 		!MatrixXd();
 		static MatrixXd^ operator *(MatrixXd^ lhs, MatrixXd^ rhs)
 		{
-			Eigen::MatrixXd tempMat = *(lhs->matrix) * *(rhs->matrix);
-			return gcnew MatrixXd(&tempMat);
+			return gcnew MatrixXd(lhs->m_ * rhs->m_);
 		}
 	internal:
-		Eigen::MatrixXd* matrix;
-		MatrixXd(Eigen::MatrixXd* matrix);
+		Eigen::MatrixXd* matrix_;
+		Eigen::MatrixXd & m_;
+		// Internal constructor for operator results.
+		MatrixXd(Eigen::MatrixXd const & matrix);
 	};
 }

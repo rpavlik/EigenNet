@@ -7,14 +7,16 @@
 using namespace EigenWrapper;
 
 MatrixXd::MatrixXd(int x, int y)
+	: matrix_(new Eigen::MatrixXd(x, y))
+	, m_(*matrix_)
 {
-	matrix = new Eigen::MatrixXd(x, y);
-	*matrix = Eigen::MatrixXd::Random(x, y);
+	m_ = Eigen::MatrixXd::Random(x, y);
 }
 
-MatrixXd::MatrixXd(Eigen::MatrixXd* mat)
+MatrixXd::MatrixXd(Eigen::MatrixXd const & mat)
+	: matrix_(new Eigen::MatrixXd(mat))
+	, m_(*matrix_)
 {
-	matrix = mat;
 }
 
 MatrixXd::~MatrixXd()
@@ -24,6 +26,6 @@ MatrixXd::~MatrixXd()
 
 MatrixXd::!MatrixXd()
 {
-	delete matrix;
-	matrix = NULL;
+	delete matrix_;
+	matrix_ = NULL;
 }
