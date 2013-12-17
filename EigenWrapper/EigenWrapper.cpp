@@ -25,4 +25,5 @@ MatrixXd::~MatrixXd()
 MatrixXd::!MatrixXd()
 {
 	delete matrix;
+	matrix = NULL;
 }
