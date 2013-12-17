@@ -16,3 +16,8 @@ MatrixXd::MatrixXd(Eigen::MatrixXd const & mat)
 	: m_(new Eigen::MatrixXd(mat))
 {
 }
+
+MatrixXd^ MatrixXd::operator *(MatrixXd^ lhs, MatrixXd^ rhs)
+{
+	return gcnew MatrixXd(lhs->m_.get() * rhs->m_.get());
+}

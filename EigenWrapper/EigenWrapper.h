@@ -44,10 +44,8 @@ namespace EigenWrapper {
 		// Constructor from size
 		MatrixXd(int x, int y);
 
-		static MatrixXd^ operator *(MatrixXd^ lhs, MatrixXd^ rhs)
-		{
-			return gcnew MatrixXd(lhs->m_.get() * rhs->m_.get());
-		}
+		static MatrixXd^ operator *(MatrixXd^ lhs, MatrixXd^ rhs);
+
 	internal:
 		ValuePointerOwner<Eigen::MatrixXd> m_;
 		// Internal constructor for operator results.
